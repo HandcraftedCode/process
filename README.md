@@ -1,4 +1,4 @@
-North
+Our Process – based on Open Source Principles
 ====================
 **Align and Guide Your Project**
 
@@ -107,11 +107,7 @@ North is meant to be a living document. Standards and best practices change, and
 
 # Development Process
 
-Much like [visual design](#visual-design), the process of developing a product has changed as the understanding of the medium being worked in has changed from an extension of print design to its own entity. Whereas in print design a final product was always the deliverable and designs for that product would be handed from one role to another without back and forth communication, the web requires a new process better suited for the complex and interactive nature of the final product.
-
-Often referred to as *waterfall*, the old method of a static page being created by a designer, approved by a product owner, and then handed off to developers without further communication does not produce results in the best interests of anyone involved. The product owner doesn't see the final product until it is all finished and ready for launch, much too late to make any significant corrections or alter the path of the project.
-
-Instead, a more *agile* process, where product owners, designers, and developers all work in conjunction with one another to build value in a product throughout its development cycle, is needed. One where a small amount of work and constant feedback between all parties can build a large project out of small parts. One where the final project may not have every bell and whistle hoped for, but rather has an array of features that fulfill the maximum potential of the cost of development based on business and user needs. This is a large change in the way most individuals and organizations have done this type of work in the past, but by sticking to this process, a better product will be built in the long run, and those involved in the building will not be exhausted or burnt out by the process.
+We use an *agile* process, where you, our designers, and our developers all work in conjunction with one another to build value in a product throughout its development cycle. One where a small amount of work and constant feedback between all parties can build a large project out of small parts. One where the final project may not have every bell and whistle hoped for, but rather has an array of features that fulfill the maximum potential of the cost of development based on business and user needs. This is a large change in the way most individuals and organizations have done this type of work in the past, but by sticking to this process, a better product will be built in the long run, and those involved in the building will not be exhausted or burnt out by the process.
 
 There are many different agile methodologies that all fulfill the same purpose of building projects in a more collaborative environment with constant communication between all roles involved in a project. The Scrum methodology described below is one such methodology that has found much success across many teams and organizations.
 
@@ -123,7 +119,7 @@ In any given project, there are a variety of roles that each play a part in the 
 
 Either the individual who directly owns the product or company the product is being developed for, or a designated representative for the product or company who has been given direct permission to make decisions for the product being developed. This individual needs to be able to make decisions on their own without consulting others and acts as a fully involved individual in the lifecycle of a project. They are responsible for prioritizing the [backlog](#backlog) of, determining [requirements](#requirements) for, and assisting in writing [user stories](#user-stories). There should only be a single product owner per project.
 
-### Project Manager
+### Project ManagerWhen developing using Git, there should be one canonical branch, usually called `master`. No developer should ever commit code directly into `master`; instead, each developer should branch off of `master` named after the feature they are working (usually from a [user story](#user-stories)) and develop in that branch. These are called **feature branches**. Feature branches should only contain one feature. When a feature is complete, a request to merge that branch into `master` should take place (in [GitHub](https://github.com/) parlance, a *pull request*). At that point, a developer who did not write the code should review the request and make sure it meets the development standards of the group and, primarily, that it works. Assuming it meets all of the basic requirements, it should be merged by the reviewing developer. A [continuous integration system](http://en.wikipedia.org/wiki/Continuous_integration) can assist greatly in this merge request process by automating most of it, including running tests against the developed code. At no point should a developer merge their own code into `master`.
 
 The individual in charge of ensuring the product cycle is being kept on track. They take charge in managing expectations of  product owners, ensuring that designers and developers are able to deliver what they have [committed to](#commitment) during a [sprint](#iterations), and working with the product owner to ensure there are enough defined, consumable, prioritized [user stories](#user-stories) to work on for the upcoming [iterations](#iterations). Project managers often run [scrums](#scrum) if there is not a dedicated person to do so. There should only be a single project manager per project.
 
@@ -137,7 +133,7 @@ Much like designers, there are two types of developers, front end developers and
 
 ### Quality Assurance
 
-Individuals working on quality assurance (QA) ensure that new code created during a [sprint](#iterations) matches the [requirements](#requirements) of the [user story](#user-stories) and does not break the functionality already in place from previous sprints. QA needs to understand how functionality may differ across platforms (on the web, [browsers and devices](#progresive-enhancement)) and work with developers when this is unclear. No code should be [released](#tags-and-releases) until QA has given sign off.
+QA understands how functionality differs across platforms (on the web, [browsers and devices](#progresive-enhancement)) and works with developers when this is unclear. No code is [released](#tags-and-releases) until QA has given sign off.
 
 ## Agile Scrum
 
@@ -185,30 +181,11 @@ The version control system of choice is [Git](http://en.wikipedia.org/wiki/Git_\
 
 ### Feature Branches
 
-When developing using Git, there should be one canonical branch, usually called `master`. No developer should ever commit code directly into `master`; instead, each developer should branch off of `master` named after the feature they are working (usually from a [user story](#user-stories)) and develop in that branch. These are called **feature branches**. Feature branches should only contain one feature. When a feature is complete, a request to merge that branch into `master` should take place (in [GitHub](https://github.com/) parlance, a *pull request*). At that point, a developer who did not write the code should review the request and make sure it meets the development standards of the group and, primarily, that it works. Assuming it meets all of the basic requirements, it should be merged by the reviewing developer. A [continuous integration system](http://en.wikipedia.org/wiki/Continuous_integration) can assist greatly in this merge request process by automating most of it, including running tests against the developed code. At no point should a developer merge their own code into `master`.
+
 
 GitHub has created a fantastic visualization of [this process flow](http://guides.github.com/overviews/flow/) as part of their [GitHub Guides](http://guides.github.com/) documentation.
 
-### Tags and Releases
 
-When a section of work has been completed (usually after a [sprint](#sprint)), whatever code is ready to be released (the current state of `master`, usually after quality assurance testing has taken place) should be tagged for release. Tags should be created using [SEMVER](http://semver.org/) versioning and should begin with the letter **v**. A single designated member of the team, usually the Lead Developer (when using a [continuous delivery system](http://en.wikipedia.org/wiki/Continuous_delivery), it should take care of this), should create the tag and push it to each Git remote. They should then release that tag (and only that tag) into production.
-
-### Preprocessed Languages
-
-When working with preprocessed languages, such as [Sass](#sass-and-compass), the compiled output should be ignored through Git's `.gitignore` file (in the case of Sass, compiled CSS should be ignored). If not using a [continuous delivery system](http://en.wikipedia.org/wiki/Continuous_delivery), the member of the team designated to [tag and release](#tags-and-releases) the code should force add the compiled output into the repository and commit that in (they should absolutely be the only ones to do this). If using a continuous delivery system, compiling preprocessed languages should be part of the build step and absolutely no compiled code should be put under version control.
-
-## Brooks's Law
-
-> Nine women can't make a baby in one month.
->
-> *Fred Brooks*
-
-[Brooks's Law](http://en.wikipedia.org/wiki/Brooks's_law), which was coined in Fred Brooks's 1975 book [The Mythical Man-Month](http://en.wikipedia.org/wiki/The_Mythical_Man-Month), states that "adding manpower to a late software project makes it later". The law, while described even by Brooks as an oversimplification, captures two factors of a general rule of software development (as from the Wikipedia article):
-
-1. It takes some time for the people added to a project to become productive. Brooks calls this the "ramp up" time. Software projects are complex engineering endeavors, and new workers on the project must first become educated about the work that has preceded them; this education requires diverting resources already working on the project, temporarily diminishing their productivity while the new workers are not yet contributing meaningfully. Each new worker also needs to integrate with a team composed of multiple engineers who must educate the new worker in their area of expertise in the code base, day by day. In addition to reducing the contribution of experienced workers (because of the need to train), new workers may even have negative contributions – for example, if they introduce bugs that move the project further from completion.
-2. Communication overheads increase as the number of people increases. The number of different communication channels increases rapidly with the number of people. Everyone working on the same task needs to keep in sync, so as more people are added they spend more time trying to find out what everyone else is doing.
-
-To combat these issues with large and expanding teams, those individuals involved with a project, from [project managers](#project-manager) to [product owners](#product-owner) to [designers](#visual-designer) and [developers](#developer), should remain as constant as possible throughout each major [release](#tags-and-releases) of a project. They should each stay on a project for the duration of a project, from the kick off of a project to a major release. The team should be kept small and flexible and communication channels between all involved should be open and available throughout the duration of a project.
 
 # Content Strategy
 
